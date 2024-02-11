@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: d-templates
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: a-templates
+  template:
+    metadata:
+      labels:
+        app: a-templates
+    spec:
+      containers:
+        - name: c-templates
+          image: sealmu81/templates
+          volumeMounts:
+            - name: efs-vol
+              mountPath: /app/templates
+      volumes:
+        - name: efs-vol
+          persistentVolumeClaim:
+            claimName: efs-pvc
