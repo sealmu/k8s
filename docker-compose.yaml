@@ -1,0 +1,15 @@
+version: "3.8"
+services:
+  designer-app:
+    # image: "designer"
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - designer-templates:/app/webdesigns
+      - /Users/path/dist/index.js:/app/index.js
+    ports:
+      - "8000:8000"
+    container_name: designer-app
+volumes:
+  designer-templates:
